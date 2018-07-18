@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import $ from "jquery";
+import Output from "./components/output"
+import Select from "./components/controls/select.js"
 
 class App extends Component {
   constructor(props){
@@ -41,11 +43,21 @@ class App extends Component {
       })
     }*/
 
-
+showHTML(x) {
+  this.setState({html : x}, this.getText)
+}
   render() {
     return (
-      <div className="App">
-      Hello
+      <div className="App Container">
+        <h1> React text generator</h1>
+        <hr />
+        <form className="form-inline">
+          <div className="form-group">
+            <label> Include HTML </label>
+            <Select value = {this.state.html} onChange = {this.showHTML.bind(this)}/>
+          </div>
+        </form>
+        <Output value= {this.state.text}/>
       </div>
     );
   }

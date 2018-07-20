@@ -1,3 +1,15 @@
-body {
-  color : white,
+h1{
+  text-align: center;
+}
+
+label{margin-left : 20px;
+margin-bottom: 20px
+}
+
+div{
+  margin: 20px
+}
+
+hr{
+color: #123455;
 }

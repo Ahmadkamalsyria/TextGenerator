@@ -11,7 +11,7 @@ class Output extends Component {
 
   render() {
     return (
-      <div className="text">
+      <div className="breadcrumb">
       {this.props.value}
       </div>
     );

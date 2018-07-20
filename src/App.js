@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import $ from "jquery";
 import Output from "./components/output"
 import Select from "./components/controls/select.js"
+import Text from "./components/controls/text.js"
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      numberOfParagraphs : 50,
-      html : true,
+      numberOfParagraphs : 5,
+      html : 'true',
       text : ""
     }
      }
     componentWillMount(){
       this.getText();
+      console.log
     }
     getText(){
+
       axios.get('http://hipsterjesus.com/api?paras='+this.state.numberOfParagraphs+'&html='+this.state.html)
       .then((response) => {
         this.setState({text: response.data.text}, function(){
@@ -46,15 +48,25 @@ class App extends Component {
 showHTML(x) {
   this.setState({html : x}, this.getText)
 }
+numberOfText(n) {
+  this.setState({numberOfParagraphs : n}, this.getText)
+}
   render() {
     return (
-      <div className="App Container">
+      <div className="App container">
         <h1> React text generator</h1>
         <hr />
         <form className="form-inline">
           <div className="form-group">
             <label> Include HTML </label>
-            <Select value = {this.state.html} onChange = {this.showHTML.bind(this)}/>
+            <hr/>
+            <br/>
+            <br/>
+            <Select value = {this.state.html} onChange = {this.showHTML.bind(this)}/><br/>
+          </div>
+          <div className="form-group">
+            <label> Number of text </label>
+            <Text value = {this.state.numberOfParagraphs} onChange = {this.numberOfText.bind(this)}/>
           </div>
         </form>
         <Output value= {this.state.text}/>
